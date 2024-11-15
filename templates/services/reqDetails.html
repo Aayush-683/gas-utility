@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Request Details</h2>
+<p><strong>Type:</strong> {{ service_request.requestType }}</p>
+<p><strong>Description:</strong> {{ service_request.description }}</p>
+<p><strong>Status:</strong> {{ service_request.status }}</p>
+<p><strong>Submitted on:</strong> {{ service_request.created_at }}</p>
+
+{% if service_request.status == 'in_progress' and service_request.assigned_to %}
+    <p><strong>Support Contact:</strong> {{ service_request.assigned_to.email }}</p>
+{% endif %}
+
+{% if service_request.fileAttachment %}
+    <p><strong>Attachment:</strong> <a href="{{ service_request.fileAttachment.url }}">Download</a></p>
+{% endif %}
+
+{% endblock %}

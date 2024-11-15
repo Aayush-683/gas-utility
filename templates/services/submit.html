@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Submit a Service Request</h2>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Submit Request</button>
+</form>
+<script>
+    let textarea = document.querySelector('textarea');
+    textarea.style.width = '100%';
+
+    let fileLabel = document.getElementById('id_fileAttachment');
+    fileLabel.innerHTML = 'Choose a file';
+</script>
+{% endblock %}

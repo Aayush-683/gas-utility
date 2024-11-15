@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}My Gas Utility Service{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Welcome to the Gas Utility Service</h1>
+        <nav>
+            <ul>
+            {% if user.is_staff %}
+                <li><a href="{% url 'support_dashboard' %}">Dashboard</a></li>
+                <li><a href="{% url 'account' %}">Account</a></li>
+            {% elif user.is_authenticated %}
+                <li><a href="{% url 'submit_request' %}">Submit a Request</a></li>
+                <li><a href="{% url 'track_requests' %}">Track Requests</a></li>
+                <li><a href="{% url 'account' %}">Account</a></li>
+            {% else %}
+                <li><a href="{% url 'login' %}">Login</a></li>
+                <li><a href="{% url 'register' %}">Register</a></li>
+            {% endif %}
+            </ul>
+        </nav>
+    </header>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    <footer>
+        <p>&copy; 2024 <a href="https://github.com/Aayush-683">Aayush683</a></p>
+    </footer>
+</body>
+</html>

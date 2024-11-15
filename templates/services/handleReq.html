@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Update Request Status</h2>
+
+<p><strong>Request ID:</strong> {{ service_request.id }}</p>
+<p><strong>Customer:</strong> {{ service_request.customer.username }}</p>
+<p><strong>Type:</strong> {{ service_request.requestType }}</p>
+<p><strong>Description:</strong> {{ service_request.description }}</p>
+
+<form method="post">
+    {% csrf_token %}
+    <label for="status">Change Status:</label>
+    <select name="status" id="status">
+        <option value="pending" {% if service_request.status == "pending" %}selected{% endif %}>Pending</option>
+        <option value="in_progress" {% if service_request.status == "in_progress" %}selected{% endif %}>In Progress</option>
+        <option value="resolved" {% if service_request.status == "resolved" %}selected{% endif %}>Resolved</option>
+    </select>
+    <button type="submit">Update</button>
+</form>
+
+{% endblock %}

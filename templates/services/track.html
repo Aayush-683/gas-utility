@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Track Your Service Requests</h2>
+<ul>
+    {% for request in requests %}
+        <li><a href="{% url 'request_detail' request.pk %}">{{ request.requestType }} - {{ request.status }}</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}

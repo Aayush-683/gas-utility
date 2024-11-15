@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}Account{% endblock %}
+
+{% block content %}
+<h2>Your Account</h2>
+
+<p><strong>Username:</strong> {{ user.username }}</p>
+<p><strong>Email:</strong> {{ user.email }}</p>
+
+<button onclick="window.location.href='{% url 'password_change' %}'">Change Password</button>
+
+<form method="post" action="{% url 'logout' %}?next=/service/track">
+    {% csrf_token %}
+    <button type="submit">Logout</button>
+</form>
+{% endblock %}
